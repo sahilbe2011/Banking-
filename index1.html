@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+	<style>
+		#sravani
+		{
+			text-align: center;
+			margin-left: 100px;
+			margin-right: 100px;
+			border-radius: 10px;
+			background-image: transparent;
+
+		}
+		input[type="text"],input[type="number"]
+		{
+			background-color: transparent;
+			height: 20px;
+			float: center;
+			border: black 2px solid;
+		}
+		body{
+			background-image:url(back2.jpg);
+		}
+	table{
+		margin-top: 50px;
+		text-align: center;
+		float: right;
+		margin-right: 100px;
+		color: bisque;
+	}
+	#total
+	{
+		align-content: center;
+	}
+	#table2
+	{
+		
+		text-align: center;
+		float: left;
+		margin-left: 300px;
+		color: bisque;
+	}
+	#show1 th, #show1 td{
+		padding: 13px;
+	}
+	#show th, #show td{
+		padding: 13px;
+	}
+	
+	#btna td input{
+		width: 100%;
+	}
+	</style>
+</head>
+<body>
+		<div id=sravani>
+			
+			<form >
+				<table>
+				Total Amount<h3 align="center" id="total" value="0">0</h1>		
+				<tr>Transaction type	<select id="opt">
+				<option> </option>
+				<option>Deposit</option>
+				<option>Withdraw</option>
+			</select></tr><br><br>
+			Amount<input type="number" id="amount"><br><br>
+			Description<input type="text" id="desc"><br><br>
+			<input type="reset">&nbsp;
+			<input type="button" name="button" id="btn" value="Add" onclick="AddRow()"><br><br>
+		</table>
+		</form>
+		</div>
+		<table border="4" id="show">
+			<thead>
+				<tr>
+					<th>Transaction</th>
+					<th>Amount</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+		</table>
+		<div id="table2">
+		<table border="4" id="show1">
+			<thead>
+				<tr>
+					<th>Transaction</th>
+					<th>Amount</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+<script>	
+
+		function AddRow()
+		{
+
+			var choice=document.getElementById("opt")
+			var number=document.getElementById("amount")
+			var msg=document.getElementById("total")
+
+		if(choice.value=="Deposit")
+		{ if(number.value==0)
+			{
+				alert("please enter amount")
+			}
+			else
+			{
+			msg.innerHTML=eval(Number(number.value)+Number(msg.innerHTML))
+			deposit()
+			}
+
+		}
+		else if(choice.value=="Withdraw")
+		{
+			if(msg.innerHTML<number.value)
+			{
+				alert("you dont have sufficent balance")
+			}
+			else
+			{
+			msg.innerHTML=(Number(msg.innerHTML)-Number(number.value))
+			withdraw()
+			}
+		}
+		}
+
+		function deposit()
+		{
+			
+			var list1 = [];
+			var list2 = [];
+			var list3 = [];
+			
+
+			var n = 1;
+			var x = 0;
+			
+			var AddRown = document.getElementById('show');
+			var NewRow = AddRown.insertRow(n);
+
+			list1 = document.getElementById("opt").value;
+			list2 = document.getElementById("amount").value;
+			list3 = document.getElementById("desc").value;
+			
+			var cel1 = NewRow.insertCell(0);
+			var cel2 = NewRow.insertCell(1);
+			var cel3 = NewRow.insertCell(2);
+			
+
+			cel1.innerHTML = list1;
+			cel2.innerHTML = list2;
+			cel3.innerHTML = list3;
+	
+
+			n++;
+			x++;
+		}
+
+
+//second table
+function withdraw(){
+	var list1 = [];
+	var list2 = [];
+	var list3 = [];
+		
+
+	var n = 1;
+	var x = 0;
+
+var AddRown = document.getElementById('show1');
+var NewRow = AddRown.insertRow(n);
+
+list1[x] = document.getElementById("opt").value;
+list2[x] = document.getElementById("amount").value;
+list3[x] = document.getElementById("desc").value;
+
+
+var cel1 = NewRow.insertCell(0);
+var cel2 = NewRow.insertCell(1);
+var cel3 = NewRow.insertCell(2);
+
+
+cel1.innerHTML = list1[x];
+cel2.innerHTML = list2[x];
+cel3.innerHTML = list3[x];
+
+
+n++;
+x++;
+}
+
+	</script>
+</body>
+</html>
